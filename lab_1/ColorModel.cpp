@@ -17,19 +17,26 @@ void ColorModel::setHsv(double h, double s, double v) {
 }
 
 void ColorModel::updateFromRgb() {
-
     double rN = m_rgb.r / 255.0;
     double gN = m_rgb.g / 255.0;
     double bN = m_rgb.b / 255.0;
 
-    double k = std::min({1.0 - rN, 1.0 - gN, 1.0 - bN});
+    double kMax = std::min({1.0 - rN, 1.0 - gN, 1.0 - bN});
+    double k = 0.0;
 
-    if (m_cmykMode == CmykMode::UCR && k < 0.4) {
-        k = 0.0;
+    if (m_cmykMode == CmykMode::GCR) {
+        k = kMax;
+    } else {
+        double threshold = 0.4;
+        if (kMax > threshold) {
+            k = (kMax - threshold) / (1.0 - threshold);
+        } else {
+            k = 0.0;
+        }
     }
 
     if (k >= 1.0) {
-        m_cmyk = {0, 0, 0, 100.0};
+        m_cmyk = {0.0, 0.0, 0.0, 100.0};
     } else {
         m_cmyk.c = (1.0 - rN - k) / (1.0 - k) * 100.0;
         m_cmyk.m = (1.0 - gN - k) / (1.0 - k) * 100.0;
