@@ -15,7 +15,7 @@ private slots:
 
 void TestColorModel::testRgbToCmykGcr() {
     ColorModel model;
-    model.setCmykMode(static_cast<ColorModel::CmykMode>(0)); // GCR
+    model.setCmykMode(static_cast<ColorModel::CmykMode>(0));
     model.setRgb(255.0, 0.0, 0.0);
     CMYKColor cmyk = model.getCmyk();
 
@@ -27,9 +27,8 @@ void TestColorModel::testRgbToCmykGcr() {
 
 void TestColorModel::testRgbToCmykUcr() {
     ColorModel model;
-    model.setCmykMode(static_cast<ColorModel::CmykMode>(1)); // UCR
+    model.setCmykMode(static_cast<ColorModel::CmykMode>(1));
 
-    // Светлый оттенок: K должен обнулиться в UCR
     model.setRgb(200.0, 200.0, 200.0);
     CMYKColor cmyk = model.getCmyk();
 
@@ -49,7 +48,7 @@ void TestColorModel::testRgbToHsv() {
 
 void TestColorModel::testClippingStrategy() {
     ColorModel model;
-    model.setStrategy(static_cast<ColorModel::OutOfBoundsStrategy>(0)); // Clipping
+    model.setStrategy(static_cast<ColorModel::OutOfBoundsStrategy>(0));
 
     model.setCmyk(0.0, 0.0, 0.0, 0.0);
     RGBColor rgb = model.getRgb();
@@ -61,7 +60,7 @@ void TestColorModel::testClippingStrategy() {
 
 void TestColorModel::testScalingStrategy() {
     ColorModel model;
-    model.setStrategy(static_cast<ColorModel::OutOfBoundsStrategy>(1)); // Scaling
+    model.setStrategy(static_cast<ColorModel::OutOfBoundsStrategy>(1));
 
     model.setCmyk(10.0, 20.0, 30.0, 5.0);
     RGBColor rgb = model.getRgb();
@@ -75,7 +74,7 @@ int main(int argc, char *argv[]) {
     TestColorModel testObject;
     int result = QTest::qExec(&testObject, argc, argv);
 
-    system("pause"); // Задержка закрытия окна консоли
+    system("pause");
     return result;
 }
 

@@ -24,7 +24,6 @@ void ColorModel::updateFromRgb() {
 
     double k = std::min({1.0 - rN, 1.0 - gN, 1.0 - bN});
 
-    // UCR / GCR
     if (m_cmykMode == CmykMode::UCR && k < 0.4) {
         k = 0.0;
     }

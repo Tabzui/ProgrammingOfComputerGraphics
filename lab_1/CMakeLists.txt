@@ -5,10 +5,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-# Подключаем модуль Test
 find_package(Qt6 COMPONENTS Core Gui Widgets Test REQUIRED)
 
-# 1. Основное приложение
 add_executable(LAB_1
     main.cpp
     ColorModel.h
@@ -21,7 +19,6 @@ add_executable(LAB_1
 
 target_link_libraries(LAB_1 PRIVATE Qt6::Widgets)
 
-# 2. Модульные тесты
 enable_testing()
 
 add_executable(LAB_1_Tests
@@ -32,5 +29,4 @@ add_executable(LAB_1_Tests
 
 target_link_libraries(LAB_1_Tests PRIVATE Qt6::Core Qt6::Test)
 
-# Регистрируем тест в CTest
 add_test(NAME ColorModelTests COMMAND LAB_1_Tests)
