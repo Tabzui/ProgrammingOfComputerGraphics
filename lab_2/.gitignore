@@ -5,3 +5,5 @@ cmake-build-*/
 .cmake/
 CMakeFiles/
 CMakeCache.txt
+test_jpegs_600/
+Для проверки Lab2/
