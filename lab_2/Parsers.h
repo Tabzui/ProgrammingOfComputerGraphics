@@ -34,6 +34,16 @@ public:
     ImageInfo parse(const QString& filePath) override;
 };
 
+class TiffParser : public ImageParser {
+public:
+    ImageInfo parse(const QString& filePath) override;
+};
+
+class PcxParser : public ImageParser {
+public:
+    ImageInfo parse(const QString& filePath) override;
+};
+
 class ParserFactory {
 public:
     static ImageParser* getParser(const QString& extension);

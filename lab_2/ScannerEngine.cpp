@@ -29,7 +29,10 @@ ScannerEngine::ScannerEngine(QObject *parent) : QObject(parent), m_totalFiles(0)
 
 void ScannerEngine::startScan(const QString& folderPath) {
     m_processedFiles = 0;
-    QStringList filters = {"*.jpg", "*.jpeg", "*.png", "*.bmp", "*.gif", "*.tif", "*.pcx"};
+    QStringList filters = {
+        "*.jpg", "*.jpeg", "*.png", "*.bmp",
+        "*.gif", "*.tif", "*.tiff", "*.pcx"
+    };
     QDirIterator it(folderPath, filters, QDir::Files, QDirIterator::Subdirectories);
 
     QStringList filesToProcess;
